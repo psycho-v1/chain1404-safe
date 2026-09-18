@@ -1,25 +1,51 @@
 # Chain 1404 Safe
 
-Deploy official Safe v1.4.1 on the BlockDAG community network and open an N-of-M wallet.
+Official Safe v1.4.1 on the BlockDAG **community** network (bdag.community).
 
-**Not affiliated with Safe{Wallet} / app.safe.global.** This is the on-chain contracts plus a thin create page. It is not the hosted Safe UI.
+Not affiliated with Safe{Wallet} / app.safe.global. Not affiliated with previous BDAG presales.
 
-Canonical network (bdag.community):
+Live page (open in MetaMask browser):
+
+https://raw.githack.com/psycho-v1/chain1404-safe/main/index.html
+
+## Network
 
 - RPC: `https://rpc.blockdag.engineering`
 - Explorer: `https://explorer.blockdag.engineering`
 - Chain ID: `1404`
 - Do not use `rpc.bdagscan.com`
 
-## What is already on chain 1404
+## What this repo is for
 
-Safe Singleton Factory is live:
+Anyone with BDAG on the community chain can:
 
-`0x914d7Fec6aaC8cd542e72Bca78B30650d45643d7`
+1. Deploy the Safe **infrastructure** once (singleton + factory + handlers).
+2. Create **their** Safe and put **their** addresses in the owner list.
 
-The v1.4.1 singletons are not. This repo deploys them through that factory so the addresses match Ethereum if the official creation bytecode and salt `0x00…00` are used.
+The person who clicks deploy only pays gas. They do not become owner unless their address is in the owner box.
 
-| Contract | Expected address |
+Do not send seeds. Owners are public addresses only.
+
+## Team runbook
+
+1. Each signer creates (or already has) a wallet. They post **the address only**.
+2. Agree threshold. Example: 5 people, threshold 3.
+3. One person funds a deployer wallet with BDAG on community 1404.
+4. That person opens the live page above, Connect, checks factory pill is live.
+5. **Deploy infrastructure** if the table still says empty. Skip if it already says `code`.
+6. Paste the owner addresses. Set threshold. Create Safe.
+7. Publish the Safe address + owner list + threshold in `addresses/1404.json` (PR) and on the explorer link.
+8. Send a dust amount. Two owners execute a test tx. Then fund it.
+
+If a later DAO should take this Safe, add that as a written rule now and `swapOwner` / `addOwnerWithThreshold` when the DAO executor exists. The repo cannot do that automatically.
+
+## Already on chain
+
+Factory: `0x914d7Fec6aaC8cd542e72Bca78B30650d45643d7`
+
+Expected CREATE2 addresses if salt `0x00…00` matches this factory:
+
+| Contract | Address |
 | --- | --- |
 | SafeL2 | `0x29fcB43b46531BcA003ddC8FCB67FFE91900C762` |
 | SafeProxyFactory | `0x4e1DCf7AD4e460CfD30791CCC4F9c8a4f820ec67` |
@@ -27,22 +53,23 @@ The v1.4.1 singletons are not. This repo deploys them through that factory so th
 | MultiSend | `0x38869bf66a61cF6bDB996A6aE40D5853Fd43B526` |
 | MultiSendCallOnly | `0x9641d764fc13c8B624c04430C7356C1C7C8102e2` |
 
-Bytecode is the Sourcify on-chain creation bytecode from Ethereum for those addresses. Solidity 0.7.6, optimizer off. No PUSH0.
+Bytecode is Ethereum Sourcify creation code for those addresses. solc 0.7.6, optimizer off.
 
-## Use
+## Local
 
-1. Enable GitHub Pages on this repo (root / `main`) or `python3 -m http.server 8080`.
-2. Connect a wallet that holds BDAG on the community network.
-3. Deploy infrastructure (one tx per missing contract).
-4. Enter owners + threshold. Create Safe.
+```bash
+git clone https://github.com/psycho-v1/chain1404-safe
+cd chain1404-safe
+python3 -m http.server 8080
+```
 
-Gas is not cheap. SafeL2 is large. Fund the deployer first.
+Then `http://127.0.0.1:8080` — still needs a wallet on chain 1404.
 
-Write confirmed addresses into `addresses/1404.json`.
+Optional: repo Settings → Pages → `main` / root → `https://psycho-v1.github.io/chain1404-safe/`
 
-## What this will not do
+## Out of scope
 
-- Put your Safe in app.safe.global
-- Ask for a seed
-- Use a bdagscan RPC
-- Recompile Safe
+- app.safe.global
+- bdagscan RPC
+- Recompiling Safe
+- Collecting anyone's private key
