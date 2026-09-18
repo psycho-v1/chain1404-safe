@@ -1,0 +1,32 @@
+:root {
+  --bg: #f4f7f8; --card: #fff; --ink: #0f172a; --muted: #475569;
+  --line: #e2e8f0; --accent: #0d9488; --accent-ink: #0f766e;
+  --warn-soft: #fef3c7; --warn: #d97706; --danger-soft: #fee2e2;
+  --danger: #dc2626; --ok-soft: #dcfce7; --ok: #15803d;
+  --shadow: 0 10px 30px rgba(15,23,42,.06); --radius: 16px; --nav-h: 64px;
+  --font: "Inter","Segoe UI",system-ui,sans-serif;
+}
+html,body { background:var(--bg); color:var(--ink); font-family:var(--font); }
+body { min-height:100vh; padding-top:var(--nav-h); }
+a { color:var(--accent-ink); }
+.navbar-desk {
+  background: color-mix(in srgb, #fff 92%, transparent);
+  backdrop-filter: blur(12px);
+  border-bottom:1px solid var(--line); min-height:var(--nav-h);
+}
+.navbar-desk .navbar-brand { font-weight:700; color:var(--ink); letter-spacing:-.02em; }
+.cardx { background:var(--card); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); }
+.hero h1 { font-weight:750; letter-spacing:-.03em; }
+.deny-strip { border:1px solid var(--danger); background:var(--danger-soft); border-radius:12px; }
+.pill { display:inline-flex; align-items:center; gap:.35rem; border-radius:999px; padding:.2rem .7rem; font-size:.78rem; font-weight:650; }
+.pill-mute { background:var(--line); color:var(--muted); }
+.pill-ok { background:var(--ok-soft); color:var(--ok); }
+.pill-warn { background:var(--warn-soft); color:var(--warn); }
+.pill-no { background:var(--danger-soft); color:var(--danger); }
+.btn { border-radius:10px; font-weight:600; min-height:44px; }
+.btn-accent { background:var(--accent); border-color:var(--accent); color:#062622; }
+.btn-accent:hover { background:var(--accent-ink); color:#fff; }
+.mono { font-family:ui-monospace,Menlo,Consolas,monospace; font-size:.84em; word-break:break-all; }
+.log { max-height:280px; overflow:auto; background:#0b1220; color:#e2e8f0; border-radius:12px; padding:1rem; font-size:.82rem; }
+.footer-desk { margin-top:3rem; border-top:1px solid var(--line); padding:1.5rem 0 2rem; color:var(--muted); font-size:.9rem; }
+.form-control, .form-select { min-height:44px; }
