@@ -58,15 +58,7 @@ Expected CREATE2 addresses if salt `0x00…00` matches this factory:
 
 Bytecode is Ethereum Sourcify creation code for those addresses. solc 0.7.6, optimizer off.
 
-## Local
 
-```bash
-git clone https://github.com/psycho-v1/chain1404-safe
-cd chain1404-safe
-python3 -m http.server 8080
-```
-
-`http://127.0.0.1:8080` still needs a wallet on chain 1404.
 
 Optional: Settings → Pages → `main` / root → `https://psycho-v1.github.io/chain1404-safe/`
 
