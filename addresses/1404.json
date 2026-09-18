@@ -7,6 +7,11 @@
   "factoryPresent": true,
   "version": "1.4.1",
   "salt": "0x0000000000000000000000000000000000000000000000000000000000000000",
+  "custody": {
+    "publisherCreatesSafe": false,
+    "publisherHoldsKeys": false,
+    "owners": "addresses pasted by the deployer at create time"
+  },
   "expected": {
     "SafeL2": "0x29fcB43b46531BcA003ddC8FCB67FFE91900C762",
     "SafeProxyFactory": "0x4e1DCf7AD4e460CfD30791CCC4F9c8a4f820ec67",

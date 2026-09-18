@@ -1,12 +1,26 @@
 # Chain 1404 Safe
 
-Official Safe v1.4.1 on the BlockDAG **community** network (bdag.community).
+This repo is published. The publisher does not create a Safe and does not hold keys.
 
-Not affiliated with Safe{Wallet} / app.safe.global. Not affiliated with previous BDAG presales.
+Whoever needs the wallet opens the page, connects **their** wallet, deploys, and pastes **their** owner addresses.
 
-Live page (open in MetaMask browser):
+Live page (MetaMask browser):
 
 https://raw.githack.com/psycho-v1/chain1404-safe/main/index.html
+
+Repo: https://github.com/psycho-v1/chain1404-safe
+
+Official Safe v1.4.1 bytecode on the BlockDAG **community** network ([bdag.community](https://bdag.community)). Not affiliated with Safe{Wallet} / app.safe.global. Not affiliated with previous BDAG presales.
+
+## Custody
+
+| Role | Does |
+| --- | --- |
+| Publisher (`psycho-v1`) | Hosts this repo and page. No seed. Not an owner unless an address from this account is pasted in the owner box. |
+| Gas payer | Connects, pays BDAG for infrastructure + `createProxyWithNonce`. Not an owner unless listed. |
+| Owners | Public addresses pasted at create time. Only they can later sign Safe txs. |
+
+Do not send private keys or seeds to this repo, to issues, or to the publisher.
 
 ## Network
 
@@ -15,29 +29,18 @@ https://raw.githack.com/psycho-v1/chain1404-safe/main/index.html
 - Chain ID: `1404`
 - Do not use `rpc.bdagscan.com`
 
-## What this repo is for
-
-Anyone with BDAG on the community chain can:
-
-1. Deploy the Safe **infrastructure** once (singleton + factory + handlers).
-2. Create **their** Safe and put **their** addresses in the owner list.
-
-The person who clicks deploy only pays gas. They do not become owner unless their address is in the owner box.
-
-Do not send seeds. Owners are public addresses only.
-
 ## Team runbook
 
-1. Each signer creates (or already has) a wallet. They post **the address only**.
-2. Agree threshold. Example: 5 people, threshold 3.
-3. One person funds a deployer wallet with BDAG on community 1404.
-4. That person opens the live page above, Connect, checks factory pill is live.
-5. **Deploy infrastructure** if the table still says empty. Skip if it already says `code`.
-6. Paste the owner addresses. Set threshold. Create Safe.
-7. Publish the Safe address + owner list + threshold in `addresses/1404.json` (PR) and on the explorer link.
-8. Send a dust amount. Two owners execute a test tx. Then fund it.
+1. Each signer posts **an address only**.
+2. Agree threshold (example: 5 people, threshold 3). Do not use `1-of-N` unless you mean a single wallet.
+3. One person funds a deployer with BDAG on community 1404.
+4. Open the live page. Connect. Factory pill should read live.
+5. **Deploy infrastructure** if the table says empty. Skip if it already says `code`.
+6. Paste owner addresses. Set threshold. Create Safe.
+7. PR the Safe address, owners, and threshold into `addresses/1404.json`.
+8. Dust test from two owners. Then fund it.
 
-If a later DAO should take this Safe, add that as a written rule now and `swapOwner` / `addOwnerWithThreshold` when the DAO executor exists. The repo cannot do that automatically.
+A later DAO does not take this Safe by itself. When that executor exists, current owners `swapOwner` / `addOwnerWithThreshold`.
 
 ## Already on chain
 
@@ -63,13 +66,14 @@ cd chain1404-safe
 python3 -m http.server 8080
 ```
 
-Then `http://127.0.0.1:8080` — still needs a wallet on chain 1404.
+`http://127.0.0.1:8080` still needs a wallet on chain 1404.
 
-Optional: repo Settings → Pages → `main` / root → `https://psycho-v1.github.io/chain1404-safe/`
+Optional: Settings → Pages → `main` / root → `https://psycho-v1.github.io/chain1404-safe/`
 
 ## Out of scope
 
 - app.safe.global
 - bdagscan RPC
 - Recompiling Safe
+- Publisher as owner
 - Collecting anyone's private key
