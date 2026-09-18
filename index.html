@@ -18,8 +18,9 @@
   <main class="container py-4">
     <section class="hero mb-3">
       <p class="pill pill-mute mb-3">Safe v1.4.1 · official bytecode · community chain 1404</p>
-      <h1>Put a Safe on the chain the community runs.</h1>
-      <p class="text-secondary">Singleton factory is already at 0x914d…43d7. This page deploys SafeL2 + proxy factory through it, then opens an N-of-M wallet. Not app.safe.global.</p>
+      <h1>This repo is published. You deploy.</h1>
+      <p class="text-secondary mb-2">The publisher of this page does not hold keys and is not an owner. The wallet you connect only pays gas. Owners are exactly the addresses you paste below.</p>
+      <p class="text-secondary">Factory is already at 0x914d…43d7. This deploys SafeL2 + proxy factory through it, then opens an N-of-M Safe. Not app.safe.global.</p>
     </section>
     <div class="deny-strip p-3 mb-4">
       Use <span class="mono">rpc.blockdag.engineering</span> (bdag.community).
@@ -31,7 +32,7 @@
         <span class="mono" id="account">not connected</span>
       </div>
       <button id="btn-infra" class="btn btn-dark" type="button">1. Deploy infrastructure</button>
-      <p class="small text-secondary mt-2 mb-0">One confirmation per missing contract. Sends to the factory with salt 0 and Ethereum creation bytecode.</p>
+      <p class="small text-secondary mt-2 mb-0">One confirmation per missing contract. Pays gas only. Does not add this wallet as an owner.</p>
     </div>
     <div class="cardx p-4 mb-3">
       <h2 class="h5">Infrastructure</h2>
@@ -44,6 +45,7 @@
     </div>
     <div class="cardx p-4 mb-3">
       <h2 class="h5">2. Create a Safe</h2>
+      <p class="small text-secondary">Paste the team addresses. Threshold is how many of them must sign. Do not paste a seed.</p>
       <label class="form-label">Owners — one address per line</label>
       <textarea id="owners" class="form-control mb-3" rows="4" placeholder="0xabc…"></textarea>
       <div class="row g-3 mb-3">
@@ -63,7 +65,7 @@
   </main>
   <footer class="footer-desk">
     <div class="container">
-      <p>Canonical network · <a href="https://bdag.community">bdag.community</a> · chain 1404 · official Safe bytecode · MIT desk / LGPL contracts</p>
+      <p>Published tool · <a href="https://github.com/psycho-v1/chain1404-safe">psycho-v1/chain1404-safe</a> · <a href="https://bdag.community">bdag.community</a> · chain 1404</p>
     </div>
   </footer>
   <script src="https://cdn.jsdelivr.net/npm/ethers@6.13.5/dist/ethers.umd.min.js"></script>
